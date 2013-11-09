@@ -1,0 +1,119 @@
+@CHARSET "UTF-8";
+/**
+ * PrimeFaces and Bootstrap Integration
+ */
+
+.ui-widget {
+	font-size: 13px;
+}
+fieldset.ui-fieldset legend {
+	font-size: 1em;
+	line-height: normal;
+	margin-bottom: 0;
+	width: auto;
+}
+
+div.ui-dialog {
+	border: 1px solid rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+div.ui-dialog-content {
+	padding: 0 !important;
+}
+
+div.ui-dialog form {
+	margin-bottom: 0;
+}
+
+div.ui-dialog .modal-body .form-horizontal .control-group {
+	margin-bottom: 13px;
+}
+
+div.ui-confirm-dialog p {
+	padding: 15px;
+}
+
+.ui-selectoneradio label {
+	margin: 0 10px 0 3px;
+}
+
+.ui-dialog-buttonpane:after {
+    clear: both;
+}
+
+.ui-dialog-buttonpane:before, 
+.ui-dialog-buttonpane:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+.ui-dialog-buttonpane {
+    background-color: #F5F5F5;
+    /*-webkit-border-radius: 0 0 6px 6px;
+       -moz-border-radius: 0 0 6px 6px;
+            border-radius: 0 0 6px 6px;*/
+    border-radius: 0;
+    border-top: 1px solid #DDDDDD;
+    box-shadow: 0 1px 0 #FFFFFF inset;
+    margin-bottom: 0;
+    padding: 14px 15px 15px;
+    text-align: right;
+}
+
+.navbar {
+	font-size: 0.85em;
+}
+
+.navbar-fixed-top {
+	z-index: 1000;
+	margin-bottom: 0;
+}
+
+label[class^="ui-"] {
+	margin-bottom: 0;
+}
+
+label.ui-selectcheckboxmenu-label {
+	font-weight: bold;
+	line-height: normal;
+}
+
+.controls .ui-spinner .ui-spinner-button {
+	right: -14px;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+	background-image: url("#{request.contextPath}/resources/lib/bootstrap/img/glyphicons-halflings.png");
+}
+
+/* White icons with optional class, or on hover/active states of certain elements */
+
+.icon-white,
+.nav-pills > .active > a > [class^="icon-"],
+.nav-pills > .active > a > [class*=" icon-"],
+.nav-list > .active > a > [class^="icon-"],
+.nav-list > .active > a > [class*=" icon-"],
+.navbar-inverse .nav > .active > a > [class^="icon-"],
+.navbar-inverse .nav > .active > a > [class*=" icon-"],
+.dropdown-menu > li > a:hover > [class^="icon-"],
+.dropdown-menu > li > a:hover > [class*=" icon-"],
+.dropdown-menu > .active > a > [class^="icon-"],
+.dropdown-menu > .active > a > [class*=" icon-"],
+.dropdown-submenu:hover > a > [class^="icon-"],
+.dropdown-submenu:hover > a > [class*=" icon-"] {
+	background-image: url("#{request.contextPath}/resources/lib/bootstrap/img/glyphicons-halflings-white.png");
+}
+
+.ui-widget .btn-toolbar {
+	font-size: 1em;
+}
+
+.ui-widget.btn-primary {
+	color: #fff;
+}

@@ -1,6 +1,7 @@
 package br.uniotes.controle.juridico.forum;
 
-import br.dados.pessoa.juridica.PessoaJuridica;
+import br.unioeste.personBO.juridica.PessoaJuridica;
+
 
 public class Forum extends PessoaJuridica{
 

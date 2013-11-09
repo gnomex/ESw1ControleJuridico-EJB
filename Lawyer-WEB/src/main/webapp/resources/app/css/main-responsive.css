@@ -1,0 +1,63 @@
+@CHARSET "UTF-8";
+
+@media (max-width: 979px) {
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	
+	.app-footer {
+		margin-right: -20px;
+		margin-left: -20px;
+		position: static;
+		bottom: 0;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+	.config-alarm-panel .span3 {
+		width: 48.6%;
+	}
+	
+	.config-alarm-panel li:nth-child(2n+3) {
+		margin-left: 0;
+	}
+	
+	.couplers-panel .span2 {
+		width: 22%;
+	}
+	
+	.couplers-panel li:nth-child(4n+5) {
+		margin-left: 0;
+	}
+}
+
+@media (min-width: 980px) and (max-width: 1279px) {
+	.config-alarm-panel .span3 {
+		width: 31.62%
+	}
+	
+	.config-alarm-panel li:nth-child(3n+4) {
+		margin-left: 0;
+	}
+	
+	.couplers-panel .span2 {
+		width: 23%;
+	}
+	
+	.couplers-panel li:nth-child(4n+5) {
+		margin-left: 0;
+	}
+}
+
+@media (min-width: 1280px) {
+	.config-alarm-panel li:nth-child(4n+5) {
+		margin-left: 0;
+	}
+	
+	.couplers-panel li:nth-child(6n+7) {
+		margin-left: 0;
+	}
+	
+}

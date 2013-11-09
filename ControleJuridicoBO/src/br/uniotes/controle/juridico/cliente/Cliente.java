@@ -2,7 +2,8 @@ package br.uniotes.controle.juridico.cliente;
 
 import java.io.Serializable;
 
-import br.dados.pessoa.Pessoa;
+import br.unioeste.personBO.Pessoa;
+
 
 public class Cliente implements Serializable{
 

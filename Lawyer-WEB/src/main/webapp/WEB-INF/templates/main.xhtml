@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+		<h:head>
+			<meta charset="utf-8" />
+			<title><ui:insert name="title">Template</ui:insert> - ITAI Archtype JSF</title>
+			<link rel="shortcut icon" href="#{request.contextPath}/resources/app/images/itai_favicon.ico" />
+			<meta name="viewport" content="width=device-width" />
+			<h:outputStylesheet name="/lib/bootstrap/css/bootstrap.min.css" />
+			<h:outputStylesheet name="/app/css/jsf-bootstrap.css" />
+			<h:outputStylesheet name="/app/css/main.css" />
+			<h:outputStylesheet name="/lib/bootstrap/css/bootstrap-responsive.min.css" />
+			<h:outputStylesheet name="/app/css/main-responsive.css" />
+			<ui:insert name="header" />
+		</h:head>
+		<h:body>
+			<p:growl id="messages" globalOnly="true" 
+				showSummary="true" autoUpdate="true" />
+			<nav class="navbar navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="brand" href="#">APP Title</a>
+						<ul class="nav pull-right">
+							<li class="divider-vertical"></li>
+							<li>
+								<a href="#">Entrar</a>
+							</li>
+						</ul>
+						<div class="nav-collapse collapse">
+							<p:outputPanel layout="block" styleClass="navbar-text pull-right" rendered="#{p:ifNoneGranted('ROLE_ADMINISTRATOR, ROLE_OPERATOR')}">
+								Não autenticado
+							</p:outputPanel>
+							<p:outputPanel layout="block" styleClass="navbar-text pull-right" rendered="#{p:ifAnyGranted('ROLE_ADMINISTRATOR, ROLE_OPERATOR')}">
+								@Username
+							</p:outputPanel>
+							<ul class="nav">
+								<li>
+									<a href="#">Home</a>
+								</li>
+								<li>
+									<a href="#">Menu 1</a>
+								</li>
+								<li>
+									<a href="#">Menu 2</a>
+								</li>
+								<li>
+									<a href="#">Menu 3</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<div id="wrapper">
+				<section id="content" class="clearfix">
+					<div class="container-fluid">
+						<ui:insert name="content" />
+					</div>
+				</section>
+			</div>
+			
+			<footer class="app-footer">
+				<div class="container-fluid">
+					<p><b>ITAI</b> titulo rodape</p>
+				</div>
+			</footer>
+			
+			<h:outputScript name="/lib/bootstrap/js/bootstrap.min.js" />
+			
+		</h:body>
+	</f:view>
+</html>
