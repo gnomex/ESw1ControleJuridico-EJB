@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import util.com.text.validator.TextValidator;
-import br.unioeste.controle.juridico.control.tramite.UCManterTramiteManager;
+import br.unioeste.controle.juridico.controller.tramite.UCManterTramiteManager;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
 import br.unioeste.controle.juridico.exception.NoData;
 import br.unioeste.controle.juridico.exception.NoUpdateProcess;

@@ -1,4 +1,4 @@
-package br.unioeste.controle.juridico.control.endereco;
+package br.unioeste.controle.juridico.controller.endereco;
 
 import br.unioeste.addressBO.Endereco;
 import br.unioeste.controle.juridico.model.endereco.ColEndereco;

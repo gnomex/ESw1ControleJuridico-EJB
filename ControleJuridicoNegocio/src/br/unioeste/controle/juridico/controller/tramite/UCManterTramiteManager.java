@@ -1,12 +1,13 @@
-package br.unioeste.controle.juridico.control.tramite;
+package br.unioeste.controle.juridico.controller.tramite;
 
 import java.util.List;
 
+import br.unioeste.controle.juridico.controller.IUCManterTramiteManager;
 import br.unioeste.controle.juridico.exception.NoPending;
 import br.unioeste.controle.juridico.model.tramite.ColTramite;
 import br.uniotes.controle.juridico.processo.tramite.TramiteProcesso;
 
-public class UCManterTramiteManager {
+public class UCManterTramiteManager implements IUCManterTramiteManager {
 
 	private ColTramite colTramite = new ColTramite();
 	
@@ -15,8 +16,8 @@ public class UCManterTramiteManager {
 			return colTramite.insertTramiteProcesso(tramite);
 		}
 		else
-			throw new NoPending("Não pode ser adicionado novo trâmite", 
-					"A situação do processo não permite");
+			throw new NoPending("Nï¿½o pode ser adicionado novo trï¿½mite", 
+					"A situaï¿½ï¿½o do processo nï¿½o permite");
 		
 	}
 	
