@@ -2,7 +2,7 @@ package br.unioeste.controle.juridico.model.tipologradouro;
 
 import java.sql.ResultSet;
 
-import br.dados.endereco.TipoLogradouro;
+import br.unioeste.addressBO.TipoLogradouro;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
 
 public class ColTipoLogradouro {

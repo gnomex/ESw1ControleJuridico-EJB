@@ -2,9 +2,9 @@ package br.unioeste.controle.juridico.model.cliente;
 
 import java.sql.ResultSet;
 
-import br.dados.pessoa.fisica.PessoaFisica;
-import br.dados.pessoa.juridica.PessoaJuridica;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
+import br.unioeste.personBO.fisica.PessoaFisica;
+import br.unioeste.personBO.juridica.PessoaJuridica;
 import br.uniotes.controle.juridico.cliente.Cliente;
 
 public class ColCliente {

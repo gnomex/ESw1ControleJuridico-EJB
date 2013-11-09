@@ -2,10 +2,7 @@ package br.unioeste.controle.juridico.model.endereco;
 
 import java.sql.ResultSet;
 
-import br.dados.endereco.Bairro;
-import br.dados.endereco.Cidade;
-import br.dados.endereco.Endereco;
-import br.dados.endereco.Logradouro;
+import br.unioeste.addressBO.*;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
 import br.unioeste.controle.juridico.model.bairro.ColBairro;
 import br.unioeste.controle.juridico.model.cidade.ColCidade;

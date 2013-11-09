@@ -2,7 +2,7 @@ package br.unioeste.controle.juridico.model.bairro;
 
 import java.sql.ResultSet;
 
-import br.dados.endereco.Bairro;
+import br.unioeste.addressBO.Bairro;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
 
 public class ColBairro {

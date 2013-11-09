@@ -1,6 +1,6 @@
 package br.uniotes.controle.juridico.advogado;
 
-import br.dados.pessoa.fisica.PessoaFisica;
+import br.unioeste.personBO.fisica.PessoaFisica;
 
 public class Advogado extends PessoaFisica{
 
