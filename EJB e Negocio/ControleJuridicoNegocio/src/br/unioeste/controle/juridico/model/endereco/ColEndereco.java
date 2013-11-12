@@ -17,7 +17,7 @@ public class ColEndereco {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append("SELECT * FROM Endereco WHERE cep = '" + cep + "'");
-	
+		
 		ResultSet rs = DataBaseConnection.getInstance().executeSQL(sql);
 		
 		rs.next();
@@ -50,6 +50,8 @@ public class ColEndereco {
 		
 		ColCidade colCid = new ColCidade();
 		end.setCidade(colCid.obterCidadePorID(cidade.getId()));
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return end;
 	}
@@ -89,6 +91,8 @@ public class ColEndereco {
 		
 		ColCidade colCid = new ColCidade();
 		end.setCidade(colCid.obterCidadePorID(cidade.getId()));
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return end;
 	}

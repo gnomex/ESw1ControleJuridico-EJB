@@ -2,7 +2,7 @@ package br.unioeste.controle.juridico.model.estado;
 
 import java.sql.ResultSet;
 
-import br.unioeste.addressBO.Estado;
+import br.dados.endereco.Estado;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
 
 public class ColEstado {

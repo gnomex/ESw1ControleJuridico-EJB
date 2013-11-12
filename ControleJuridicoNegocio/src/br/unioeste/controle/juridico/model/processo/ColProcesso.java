@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import util.com.text.validator.TextValidator;
-import br.unioeste.controle.juridico.controller.tramite.UCManterTramiteManager;
+import br.unioeste.controle.juridico.control.tramite.UCManterTramiteManager;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
 import br.unioeste.controle.juridico.exception.NoData;
 import br.unioeste.controle.juridico.exception.NoUpdateProcess;
@@ -37,15 +37,15 @@ public class ColProcesso {
 		if(validaDados(proc)){
 			StringBuilder sql = new StringBuilder();
 			
-			sql.append("INSERT INTO Processo(dtAbertura, descricao, codTipoProc, codForum, codCli, situacao, nroProcesso, codAdv, nroOAB) VALUES ('" + proc.getDtAbertura() + "','"
+			sql.append("INSERT INTO Processo(dtAbertura, descricao, situacao, codTipoProc, codForum, codCli, codAdv, nroOAB, nroProcesso) VALUES ('" + proc.getDtAbertura() + "','"
 					+ proc.getDescricao() + "',"
+					+ proc.getSituacao() + ","
 					+ proc.getTipo().getCodTipoProcesso() + ","
 					+ proc.getForum().getCodForum() + ","
 					+ proc.getCliente().getCodCli() + ","
-					+ proc.getSituacao() + ","
-					+ proc.getNroProcesso() + ","
 					+ proc.getAdvogado().getCodAdv() + ",'"
-					+ proc.getAdvogado().getNroOAB() + "')");
+					+ proc.getAdvogado().getNroOAB() + "','"
+					+ proc.getNroProcesso() + "')");
 			
 			
 			DataBaseConnection.getInstance().execute(sql);
@@ -53,6 +53,8 @@ public class ColProcesso {
 			proc.setCodProc(getLastID());
 			
 			createTramiteAbertura(proc); //cria trâmite inicial
+			
+			DataBaseConnection.getInstance().commit();
 		}
 		return proc;
 	}
@@ -62,7 +64,7 @@ public class ColProcesso {
 			throw new NoData("Dados invalidos", "Ou esta sem dados ou contêm dados invalidos");
 		else if(!TextValidator.getInstance().isString(proc.getDescricao()))
 			throw new NoData("Dados invalidos", "Ou esta sem dados ou contêm dados invalidos");
-		else if(proc.getNroProcesso() == null)
+		else if(!TextValidator.getInstance().isNumber(proc.getNroProcesso()))
 			throw new NoData("Dados invalidos", "Ou esta sem dados ou contêm dados invalidos");
 		else if(!TextValidator.getInstance().isNumber(String.valueOf(proc.getAdvogado().getCodAdv())))
 			throw new NoData("Dados invalidos", "Ou esta sem dados ou contêm dados invalidos");
@@ -74,7 +76,7 @@ public class ColProcesso {
 			throw new NoData("Dados invalidos", "Ou esta sem dados ou contêm dados invalidos");
 		else if(!TextValidator.getInstance().isNumber(proc.getTipo().getCodTipoProcesso().toString()))
 			throw new NoData("Dados invalidos", "Ou esta sem dados ou contêm dados invalidos");
-		else if(!TextValidator.getInstance().isString(proc.getAdvogado().getNroOAB()))
+		else if(!TextValidator.getInstance().isNumber(proc.getAdvogado().getNroOAB()))
 			throw new NoData("Dados invalidos", "Ou esta sem dados ou contêm dados invalidos");
 		else return true;
 	}
@@ -118,27 +120,29 @@ public class ColProcesso {
 		Cliente cliente = new Cliente();
 		Advogado adv = new Advogado();
 		
-		while(rs.next()){
-			proc.setCodProc(rs.getInt("codProc"));
-			proc.setDtAbertura(rs.getString("dtAbertura"));
-			proc.setDescricao(rs.getString("descricao"));
-			proc.setSituacao(rs.getInt("situacao"));
-			proc.setNroProcesso(rs.getString("nroProcesso"));
-			
-			tipo.setCodTipoProcesso(rs.getInt("codTipoProc"));
-			proc.setTipo(tipo);
-			
-			forum.setCodForum(rs.getInt("codForum"));
-			proc.setForum(forum);
-			
-			cliente.setCodCli(rs.getInt("codCli"));
-			proc.setCliente(cliente);
-			
-			adv.setCodAdv(rs.getInt("codAdv"));
-			proc.setAdvogado(adv);
-		}
+		rs.next();
+		proc.setCodProc(rs.getInt("codProc"));
+		proc.setDtAbertura(rs.getString("dtAbertura"));
+		proc.setDescricao(rs.getString("descricao"));
+		proc.setSituacao(rs.getInt("situacao"));
+		proc.setNroProcesso(rs.getString("nroProcesso"));
+
+		tipo.setCodTipoProcesso(rs.getInt("codTipoProc"));
+		proc.setTipo(tipo);
+
+		forum.setCodForum(rs.getInt("codForum"));
+		proc.setForum(forum);
+
+		cliente.setCodCli(rs.getInt("codCli"));
+		proc.setCliente(cliente);
+
+		adv.setCodAdv(rs.getInt("codAdv"));
+		proc.setAdvogado(adv);		
 		
 		ColTipoProcesso colTipo = new ColTipoProcesso();
+		
+		System.out.println(proc.getTipo().getCodTipoProcesso());
+		
 		proc.setTipo(colTipo.retrieveTipoProcesso(proc.getTipo().getCodTipoProcesso()));
 		
 		ColForum colForum = new ColForum();
@@ -149,6 +153,8 @@ public class ColProcesso {
 		
 		ColAdvogado colAdv = new ColAdvogado();
 		proc.setAdvogado(colAdv.obterAdvogado(proc.getAdvogado().getCodAdv()));
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return proc;
 	}
@@ -203,6 +209,8 @@ public class ColProcesso {
 		
 		ColAdvogado colAdv = new ColAdvogado();
 		proc.setAdvogado(colAdv.obterAdvogado(proc.getAdvogado().getCodAdv()));
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return proc;
 	}
@@ -261,6 +269,8 @@ public class ColProcesso {
 			p.setTipo(colTipo.retrieveTipoProcesso(p.getTipo().getCodTipoProcesso()));
 		}
 		
+		DataBaseConnection.getInstance().commit();
+		
 		return lista;
 	}
 	
@@ -318,6 +328,8 @@ public class ColProcesso {
 			p.setTipo(colTipo.retrieveTipoProcesso(p.getTipo().getCodTipoProcesso()));
 		}
 		
+		DataBaseConnection.getInstance().commit();
+		
 		return lista;
 	}
 	
@@ -372,8 +384,11 @@ public class ColProcesso {
 		ColTipoProcesso colTipo = new ColTipoProcesso();
 		
 		for(Processo p : lista){
+			
 			p.setTipo(colTipo.retrieveTipoProcesso(p.getTipo().getCodTipoProcesso()));
 		}
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return lista;
 	}
@@ -397,7 +412,7 @@ public class ColProcesso {
 					
 					tramite = new TramiteProcesso();
 					tramite.setDtTramite(sdf.format( new Date( System.currentTimeMillis() ) ));
-					tramite.setObservacoes("Lan�amento da situa��o");
+					tramite.setObservacoes("Lançamento da situação");
 					
 					TipoTramite tipo = new TipoTramite();
 					tipo.setTipo(getSituacao(newProc.getSituacao()));
@@ -411,15 +426,17 @@ public class ColProcesso {
 				atualizarProcesso("situacao", newProc.getSituacao().toString(), newProc.getCodProc(),true);
 				atualizarProcesso("descricao", newProc.getDescricao(), newProc.getCodProc(),false);
 				
+				DataBaseConnection.getInstance().commit();
+				
 				return newProc;
 			}
 			else 
-				throw new NoUpdateProcess("Processo n�o pode ser atualizado", 
-						"O Tr�mite do processo n�o � Abertura");
+				throw new NoUpdateProcess("Processo não pode ser atualizado", 
+						"O Trâmite do processo não é Abertura");
 		}
 		else
-			throw new NoUpdateProcess("Processo n�o pode ser atualizado", 
-					"Situa��o do Processo n�o � de Aberto");
+			throw new NoUpdateProcess("Processo não pode ser atualizado", 
+					"Situação do Processo não é de Aberto");
 	}
 	
 	/**
@@ -453,7 +470,7 @@ public class ColProcesso {
 		
 		TramiteProcesso tramite = new TramiteProcesso();
 		tramite.setDtTramite(sdf.format( new Date( System.currentTimeMillis() ) ));
-		tramite.setObservacoes("Cria��o do processo no escrit�rio");
+		tramite.setObservacoes("Criação do processo no escritório");
 		
 		TipoTramite tipo = new TipoTramite();
 		tipo.setTipo("Abertura");

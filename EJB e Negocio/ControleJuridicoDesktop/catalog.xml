@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/ClienteWS/ClienteWS?wsdl" uri="xml-resources/web-service-references/ClienteWS/wsdl/localhost_8080/ClienteWS/ClienteWS.wsdl"/>
+    <system systemId="http://localhost:8080/ClienteWS/ClienteWS?xsd=1" uri="xml-resources/web-service-references/ClienteWS/wsdl/localhost_8080/ClienteWS/ClienteWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/ForumWS/ForumWS?wsdl" uri="xml-resources/web-service-references/ForumWS/wsdl/localhost_8080/ForumWS/ForumWS.wsdl"/>
+    <system systemId="http://localhost:8080/ForumWS/ForumWS?xsd=1" uri="xml-resources/web-service-references/ForumWS/wsdl/localhost_8080/ForumWS/ForumWS.xsd_1.xsd"/>
+</catalog>

@@ -68,8 +68,8 @@ public class ColTipoProcesso {
 		rs.next();
 		tipo.setCodTipoProcesso(rs.getInt("codTipoProc"));
 		tipo.setTipo(rs.getString("tipo"));
-		System.out.println(tipo.getCodTipoProcesso());
-		System.out.println(tipo.getTipo());
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return tipo;
 	}

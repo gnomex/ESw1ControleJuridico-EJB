@@ -2,6 +2,7 @@ package br.unioeste.controle.juridico.db;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataBaseConnection {
@@ -18,6 +19,11 @@ public class DataBaseConnection {
 	
 	public void setConnection(Connection con){
 		this.con = con;
+		try {
+			this.con.setAutoCommit(false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public Connection getConnection(){
@@ -43,5 +49,13 @@ public class DataBaseConnection {
 	public void execute(StringBuilder sql)	throws Exception{
 		Statement s = con.createStatement();
 		s.execute(sql.toString());
+	}
+	
+	public void commit(){
+		try {
+			con.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

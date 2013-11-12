@@ -2,6 +2,7 @@ package br.unioeste.controle.juridico.model.forum;
 
 import java.sql.ResultSet;
 
+import br.dados.endereco.Endereco;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
 import br.uniotes.controle.juridico.forum.Forum;
 
@@ -22,13 +23,17 @@ public class ColForum {
 		
 		Forum forum = new Forum();
 		
-		while(rs.next()){
+		rs.next();
 			
-			forum.setCodForum(rs.getInt("codForum"));
-			forum.setNome(rs.getString("nome"));
-			forum.setNomeFantasia(rs.getString("nomeFantasia"));
-			forum.setCNPJ(rs.getString("cnpj"));
-		}
+		forum.setCodForum(rs.getInt("codForum"));
+		forum.setNome(rs.getString("nome"));
+		forum.setNomeFantasia(rs.getString("nomeFantasia"));
+		forum.setCNPJ(rs.getString("cnpj"));
+		Endereco end = new Endereco();
+		end.setCodEnd(rs.getInt("codEnd"));
+		forum.setEnd(end);
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return forum;
 	}

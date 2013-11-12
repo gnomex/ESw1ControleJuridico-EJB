@@ -23,6 +23,7 @@ public class ColTipoTramite {
 			DataBaseConnection.getInstance().execute(sql);
 			
 			tipo.setCodTipoTramite(getLastID());
+			
 		}
 		else
 			throw new NoData("Sem dados ou dados invalidos", "Sem dados ou dados invalidos");
@@ -39,7 +40,7 @@ public class ColTipoTramite {
 		StringBuilder sql = new StringBuilder();
 		int id = 0;
 		
-		sql.append("SELECT MAX(codTipoTramite) FROM tipotramite");
+		sql.append("SELECT MAX(codTipoTramite) FROM TipoTramite");
 		
 		ResultSet rs = DataBaseConnection.getInstance().executeSQL(sql);
 		
@@ -58,16 +59,16 @@ public class ColTipoTramite {
 	public TipoTramite retrieveTipoTramite(Integer codTipoTramite) throws Exception{
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append("SELECT * FROM tipotramite WHERE codTipoTramite = " + codTipoTramite + "");
+		sql.append("SELECT * FROM TipoTramite WHERE codTipoTramite = " + codTipoTramite + "");
 		
 		ResultSet rs = DataBaseConnection.getInstance().executeSQL(sql);
 		
 		TipoTramite tipo = new TipoTramite();
 		
-		while(rs.next()){
-			tipo.setCodTipoTramite(rs.getInt(1));
-			tipo.setTipo(rs.getString(2));
-		}
+		rs.next();
+		tipo.setCodTipoTramite(rs.getInt(1));
+		tipo.setTipo(rs.getString(2));
+		
 		
 		return tipo;
 	}

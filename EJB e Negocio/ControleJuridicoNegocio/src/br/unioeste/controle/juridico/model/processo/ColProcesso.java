@@ -53,6 +53,8 @@ public class ColProcesso {
 			proc.setCodProc(getLastID());
 			
 			createTramiteAbertura(proc); //cria trâmite inicial
+			
+			DataBaseConnection.getInstance().commit();
 		}
 		return proc;
 	}
@@ -152,6 +154,8 @@ public class ColProcesso {
 		ColAdvogado colAdv = new ColAdvogado();
 		proc.setAdvogado(colAdv.obterAdvogado(proc.getAdvogado().getCodAdv()));
 		
+		DataBaseConnection.getInstance().commit();
+		
 		return proc;
 	}
 	
@@ -205,6 +209,8 @@ public class ColProcesso {
 		
 		ColAdvogado colAdv = new ColAdvogado();
 		proc.setAdvogado(colAdv.obterAdvogado(proc.getAdvogado().getCodAdv()));
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return proc;
 	}
@@ -263,6 +269,8 @@ public class ColProcesso {
 			p.setTipo(colTipo.retrieveTipoProcesso(p.getTipo().getCodTipoProcesso()));
 		}
 		
+		DataBaseConnection.getInstance().commit();
+		
 		return lista;
 	}
 	
@@ -319,6 +327,8 @@ public class ColProcesso {
 		for(Processo p : lista){
 			p.setTipo(colTipo.retrieveTipoProcesso(p.getTipo().getCodTipoProcesso()));
 		}
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return lista;
 	}
@@ -378,6 +388,8 @@ public class ColProcesso {
 			p.setTipo(colTipo.retrieveTipoProcesso(p.getTipo().getCodTipoProcesso()));
 		}
 		
+		DataBaseConnection.getInstance().commit();
+		
 		return lista;
 	}
 	
@@ -413,6 +425,8 @@ public class ColProcesso {
 				
 				atualizarProcesso("situacao", newProc.getSituacao().toString(), newProc.getCodProc(),true);
 				atualizarProcesso("descricao", newProc.getDescricao(), newProc.getCodProc(),false);
+				
+				DataBaseConnection.getInstance().commit();
 				
 				return newProc;
 			}

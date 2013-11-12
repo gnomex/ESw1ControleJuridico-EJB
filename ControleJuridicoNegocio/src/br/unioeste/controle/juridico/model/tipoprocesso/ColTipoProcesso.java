@@ -59,16 +59,17 @@ public class ColTipoProcesso {
 	public TipoProcesso retrieveTipoProcesso(Integer codTipoProc) throws Exception{
 		StringBuilder sql = new StringBuilder();
 		
-		sql.append("SELECT * FROM TipoProcesso WHERE codTipoProc = " + codTipoProc + "");
+		sql.append("SELECT * FROM TipoProcesso WHERE codTipoProc = " + codTipoProc);
 		
 		ResultSet rs = DataBaseConnection.getInstance().executeSQL(sql);
 		
 		TipoProcesso tipo = new TipoProcesso();
 		
-		while(rs.next()){
-			tipo.setCodTipoProcesso(rs.getInt(1));
-			tipo.setTipo(rs.getString(2));
-		}
+		rs.next();
+		tipo.setCodTipoProcesso(rs.getInt("codTipoProc"));
+		tipo.setTipo(rs.getString("tipo"));
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return tipo;
 	}

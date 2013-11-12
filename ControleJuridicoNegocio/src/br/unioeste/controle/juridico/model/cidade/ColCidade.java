@@ -2,8 +2,8 @@ package br.unioeste.controle.juridico.model.cidade;
 
 import java.sql.ResultSet;
 
-import br.unioeste.addressBO.Cidade;
-import br.unioeste.addressBO.Estado;
+import br.dados.endereco.Cidade;
+import br.dados.endereco.Estado;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
 import br.unioeste.controle.juridico.model.estado.ColEstado;
 

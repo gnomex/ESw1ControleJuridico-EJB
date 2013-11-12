@@ -2,6 +2,7 @@ package br.unioeste.controle.juridico.model.advogado;
 
 import java.sql.ResultSet;
 
+import br.dados.endereco.Endereco;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
 import br.uniotes.controle.juridico.advogado.Advogado;
 
@@ -18,7 +19,7 @@ public class ColAdvogado {
 		StringBuilder sql = new StringBuilder();
 		Advogado adv = new Advogado();
 		
-		sql.append("SELECT * FROM advogado WHERE codAdv = "+codigo);
+		sql.append("SELECT * FROM Advogado WHERE codAdv = "+codigo);
 		
 		ResultSet rs = DataBaseConnection.getInstance().executeSQL(sql);
 
@@ -27,7 +28,12 @@ public class ColAdvogado {
 		adv.setNome(rs.getString("nome"));
 		adv.setSobreNome(rs.getString("sobrenome"));
 		adv.setCPF(rs.getString("cpf"));
-		adv.setNroOAB(rs.getString("nroOAB"));		
+		adv.setNroOAB(rs.getString("nroOAB"));
+		Endereco end = new Endereco();
+		end.setCodEnd(rs.getInt("codEnd"));
+		adv.setEnd(end);
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return adv;
 	}

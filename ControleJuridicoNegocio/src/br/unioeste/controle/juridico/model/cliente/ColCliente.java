@@ -2,9 +2,10 @@ package br.unioeste.controle.juridico.model.cliente;
 
 import java.sql.ResultSet;
 
+import br.dados.endereco.Endereco;
+import br.dados.pessoa.fisica.PessoaFisica;
+import br.dados.pessoa.juridica.PessoaJuridica;
 import br.unioeste.controle.juridico.db.DataBaseConnection;
-import br.unioeste.personBO.fisica.PessoaFisica;
-import br.unioeste.personBO.juridica.PessoaJuridica;
 import br.uniotes.controle.juridico.cliente.Cliente;
 
 public class ColCliente {
@@ -35,6 +36,9 @@ public class ColCliente {
 			pessoa.setNome(rs.getString("nome"));
 			pessoa.setSobreNome(rs.getString("sobrenome"));
 			pessoa.setCPF(rs.getString("cpf"));
+			Endereco end = new Endereco();
+			end.setCodEnd(rs.getInt("codEnd"));
+			pessoa.setEnd(end);
 			cli.setCodCli(rs.getInt("codCli"));
 
 			cli.setPessoa(pessoa);
@@ -44,10 +48,16 @@ public class ColCliente {
 			pessoa.setNome(rs.getString("nome"));
 			pessoa.setNomeFantasia(rs.getString("sobrenome"));
 			pessoa.setCNPJ(rs.getString("cnpj"));
+			Endereco end = new Endereco();
+			end.setCodEnd(rs.getInt("codEnd"));
+			pessoa.setEnd(end);
+			
 			cli.setCodCli(rs.getInt("codCli"));
 
 			cli.setPessoa(pessoa);
 		}
+		
+		DataBaseConnection.getInstance().commit();
 		
 		return cli;
 	}

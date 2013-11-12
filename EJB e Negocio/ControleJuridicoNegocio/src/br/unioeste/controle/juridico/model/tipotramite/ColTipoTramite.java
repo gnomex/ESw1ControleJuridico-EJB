@@ -23,6 +23,7 @@ public class ColTipoTramite {
 			DataBaseConnection.getInstance().execute(sql);
 			
 			tipo.setCodTipoTramite(getLastID());
+			
 		}
 		else
 			throw new NoData("Sem dados ou dados invalidos", "Sem dados ou dados invalidos");
@@ -64,10 +65,10 @@ public class ColTipoTramite {
 		
 		TipoTramite tipo = new TipoTramite();
 		
-		while(rs.next()){
-			tipo.setCodTipoTramite(rs.getInt(1));
-			tipo.setTipo(rs.getString(2));
-		}
+		rs.next();
+		tipo.setCodTipoTramite(rs.getInt(1));
+		tipo.setTipo(rs.getString(2));
+		
 		
 		return tipo;
 	}
